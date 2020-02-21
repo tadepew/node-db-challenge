@@ -16,13 +16,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  projectData = req.params;
+  projectData = req.body;
 
   Projects.add(projectData)
     .then(project => {
       res.status(200).json(project);
     })
     .catch(err => {
+      console.log("err", err);
       res.status(500).json({ message: "Failed to add project." });
     });
 });
